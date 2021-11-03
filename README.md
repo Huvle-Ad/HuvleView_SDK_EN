@@ -1,4 +1,4 @@
-# HuvleAdKnowva_SDK_android
+# HuvleView_SDK
 
 ## 허블뷰 (Huvle) SDK Install Guide
 
