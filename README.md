@@ -9,7 +9,7 @@ Huvle SDK의 연동 방식은 Gradle을 이용한 방법으로 샘플 예제를 
 
 
 ## 제휴 신청
-허블 애드노바(AdKnowva) SDK 제휴 방법은 https://www.huvleview.com/doc/contact.php 에 절차를 안내 드리고 있습니다.
+허블뷰 (Huvle) SDK 제휴 방법은 https://www.huvleview.com/doc/contact.php 에 절차를 안내 드리고 있습니다.
 
 
 ### 적용가이드
@@ -40,7 +40,7 @@ Huvle SDK의 연동 방식은 Gradle을 이용한 방법으로 샘플 예제를 
 ```
 
 ### 2. SDK 추가
-Huvle Adknowva SDK 를 사용하기 위해서는 gradle에 SDK를 포함한 하위 라이브러리들을 추가해야합니다.
+HuvleView SDK 를 사용하기 위해서는 gradle에 SDK를 포함한 하위 라이브러리들을 추가해야합니다.
 - build.gradle(Project)
 ```
 allprojects {
