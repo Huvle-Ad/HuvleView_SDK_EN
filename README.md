@@ -6,7 +6,7 @@ Huvle SDK의 연동 방식은 Gradle을 이용한 방법으로 샘플 예제를 
 또한 Flutter와 Unity 3D에서도 연동이 가능합니다. 현재 Huvle SDK 최신버전은 **5.0.0** 입니다.
 아래 가이드 문서 내용은 본 문서 적용가이드의 **"모든 허블뷰 샘플 프로젝트 다운로드"** 하시면 모든 내용을 보실 수 있습니다.
 
-### [Guide_EN](guide/guide_EN.md)
+- [English ver.](guide/guide_EN.md)
 
 
 ## 제휴 신청
