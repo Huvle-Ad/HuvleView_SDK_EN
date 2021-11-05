@@ -1,26 +1,25 @@
 # HuvleView_SDK
 
-## 허블뷰 (Huvle) SDK Install Guide
+## HuvleView SDK Install Guide
+#### [Guide(KR)](guide/guide_EN.md)
 
-Huvle SDK의 연동 방식은 Gradle을 이용한 방법으로 샘플 예제를 이용해 간단하게 연동이 가능합니다.
-또한 Flutter와 Unity 3D에서도 연동이 가능합니다. 현재 Huvle SDK 최신버전은 **5.0.0** 입니다.
-아래 가이드 문서 내용은 본 문서 적용가이드의 **"모든 허블뷰 샘플 프로젝트 다운로드"** 하시면 모든 내용을 보실 수 있습니다.
-
-- [English ver.](guide/guide_EN.md)
-
-
-## 제휴 신청
-허블뷰 (Huvle) SDK 제휴 방법은 https://www.huvleview.com/doc/contact.php 에 절차를 안내 드리고 있습니다.
+You can easily integrate your app with Huvle SDK by using the sample code. Huvle SDK also supports Flutter or Unity 3D development environment.
+You can check the full contents of guide documents by downloading the files from the **“Download All HuvleView Sample Project”** menu below.
+Currently, the latest version of Huvle SDK is **5.0.0**.
 
 
-### 적용가이드
-- Usages 를 참고하시거나 아래 샘플 프로젝트를 참고해주세요.
-- [모든 샘플 프로젝트 다운로드(android,flutter,unity)](https://github.com/wootaeng/HuvleSDK_Guide/archive/main.zip)
+## Affiliate Application
+We will help you know how to affiliate with HuvleView; please visit this URL. https://www.huvleview.com/doc/contact.php
+
+
+### Integration Guide
+- Please refer to Usages or the sample project below.
+- [Download All HuvleView Sample Projects (android, flutter, unity)](https://github.com/wootaeng/HuvleSDK_Guide/archive/main.zip)
 
 
 ## Usages
 ### 1. Manifest
-- networkSecurityConfig 추가(Android 10(API 레벨 29) 이상을 타켓팅하는 경우 requestLegacyExternalStorage추가)
+- Add networkSecurityConfig (If you target Android 10 (API level 29) or higher, set the value of android: requestLegacyExternalStorage.
 ```
 <uses-permission android:name="android.permission.INTERNET" />
 
@@ -32,7 +31,7 @@ Huvle SDK의 연동 방식은 Gradle을 이용한 방법으로 샘플 예제를 
 	.
 	
 ```
-- 항상 귀사의 앱이 실행될 수 있도록 launchMode 및 clearTaskOnLaunch 추가
+- Add launchMode and clearTaskOnLaunch.
 ```
 <activity
 	android:name=".MainActivity"
@@ -40,8 +39,8 @@ Huvle SDK의 연동 방식은 Gradle을 이용한 방법으로 샘플 예제를 
 	android:clearTaskOnLaunch="true">
 ```
 
-### 2. SDK 추가
-HuvleView SDK 를 사용하기 위해서는 gradle에 SDK를 포함한 하위 라이브러리들을 추가해야합니다.
+### 2. Add SDK 
+Please add sub library including SDK into Gradle to use HuvleView SDK.
 - build.gradle(Project)
 ```
 allprojects {
@@ -72,7 +71,7 @@ dependencies {
 }
 ```
 
-- Android Studio 4.1(com.android.tools.build:gradle:4.1.0)사용시 native-debug-symbols.zip자동생성 추가하고 이하버전은 아래 참조url을 참고해 주세요.
+- If you use Anroid Studio 4.1 (com.android.tools.build:gradle:4.1.0), please add ‘native-debug-symbols.zip’ on Automatic Generation and refer to the URL below for the lower versions.
 ```
 buildTypes {
 	...
@@ -87,20 +86,20 @@ buildTypes {
 	...
 }
 ```
-앱 업데이트시 네이티브 충돌 관련 워닝처리
-- 위와같이 적용하시면 프로젝트\app\build\outputs\native-debug-symbols\debug\native-debug-symbols.zip 생성됩니다.
-- 구글콘솔에서 앱 업데이트시 해당앱의 app bundle 탐색기 > 저작물 > 네이티브 디버그 기호 > native-debug-symbols.zip 파일 업로드
-- 참조: https://developer.android.com/studio/build/shrink-code?hl=ko#native-crash-support
+Updating the app, how to process an Alert (warning sign) related with Native Conflict
+- When you apply it like the code above, ‘project\app\build\outputs\native-debug-symbols\debug\native-debug-symbols.zip’ will be generated.
+- When you update the app on Google Console, please upload the file ‘app bundle seeker > copyrights > native-debug-symbols > native-debug-symbols.zip’ of the app.
+- Reference: https://developer.android.com/studio/build/shrink-code?hl=ko#native-crash-support
 
-- proguard-rules.pro아래 코드 추가
+- Add the code below into proguard-rules.pro.
 ```
 -keep class com.byappsoft.sap.**{*;}
 -dontwarn com.byappsoft.sap.**
 ```
 
-### 3. 앱에 적용하기
-- MainActivity(귀사의 MainActivity)
-+ onCreate 퍼미션 확인
+### 3. Apply to your app
+- MainActivity
++ Check the permission of onCreate.
 ```java
 @Override
 protected void onCreate(Bundle savedInstanceState) {
@@ -113,7 +112,7 @@ protected void onCreate(Bundle savedInstanceState) {
 }
 ```
 
-+ onResume 추가
++ Add onResume
 ```java
 @Override
 public void onResume() {
@@ -125,9 +124,9 @@ public void onResume() {
 	}
 }
 ```
-Sap_act_main_launcher.initsapStart(this, "에이전트키", true, true); 에이전트 키 정보는 네트워크사에게 문의해주시거나 단독 앱사의 경우 agent.huvle.com에서 회원 가입 시 사용하셨던 아이디와 동일하게 입력하시면됩니다.
+Sap_act_main_launcher.initsapStart(this, “AgentKey”, true, True); You can ask Agent Key info to the network company, or if you run an independent company just enter the same ID you used to register at agent.huvle.com.
 
-+ 권한설정 부분 추가
++ Add permission settings.
 ```java
 private boolean checkPermission(){
 	if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -145,22 +144,22 @@ private void requestSapPermissions() {
 }
 ```
 
-### 4. 노티바/동의창내용 커스텀시(샘플앱에 적용되어 있음, 커스텀 하지 않을경우 아래 작업은 불필요.)
+### 4. When you customize Notification-bar/Approval window (It is applied in the sample app, when you do not customize, the process below is not necessary.)
 ```
-- 귀사의 앱 내에 com\byappsoft\sap\CustomNotibarConfig.java 추가후 변경(기본모드 사용시에는 모두 주석처리 또는 추가하지 않음.)
-- 동의창 관련 매소드
+- Add com\byappsoft\sap\CustomNotibarConfig.java into your app and then change. (When you use normal mode, all comment out or do not add it.)
+- Method regarding to Approval window
 	getNotibarPopupBg()
-- 노티바 관련 매소드
-	노티바 아이콘 : getNotibarIcon1() ~ getNotibarIcon5()
-	노티바 텍스트 : getNotibarString1() ~ getNotibarString5()
-	해당 액션 : callNotibar1() ~ callNotibar5()
+- Method regarding to Notification-bar
+	Notification-bar icon : getNotibarIcon1() ~ getNotibarIcon5()
+	Notification-bar text : getNotibarString1() ~ getNotibarString5()
+	Corresponding action : callNotibar1() ~ callNotibar5()
 ```
 
-[이전 버전 가이드 페이지 바로가기](http://api.huvleview.com/ko/index.html)
+[Shortcut to the previous guide page.](http://api.huvleview.com/ko/index.html)
 
 
 ## License
-Huvle SDK 의 저작권은 (주)허블에 있습니다.
+Huvle Corporation owns the copyright on HuvleView SDK.
 ```
 Huvle SDK Android
 Copyright 2021-present Huvle Corp.
