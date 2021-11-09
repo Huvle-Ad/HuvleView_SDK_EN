@@ -1,7 +1,7 @@
 # HuvleView_SDK
 
 ## HuvleView SDK Install Guide
-#### [Guide(KR)](guide/guide(KR).md)
+
 
 You can easily integrate your app with Huvle SDK by using the sample code. Huvle SDK also supports Flutter or Unity 3D development environment.
 You can check the full contents of guide documents by downloading the files from the **“Download All HuvleView Sample Project”** menu below.
