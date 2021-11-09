@@ -22,6 +22,8 @@ Huvle SDK의 연동 방식은 Gradle을 이용한 방법으로 샘플 예제를 
 - networkSecurityConfig 추가(Android 10(API 레벨 29) 이상을 타켓팅하는 경우 requestLegacyExternalStorage추가)
 ```
 <uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
 
 <application
 	.

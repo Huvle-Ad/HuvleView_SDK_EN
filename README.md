@@ -22,6 +22,8 @@ We will help you know how to affiliate with HuvleView; please visit this URL. ht
 - Add networkSecurityConfig (If you target Android 10 (API level 29) or higher, set the value of android: requestLegacyExternalStorage.
 ```
 <uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
 
 <application
 	.
