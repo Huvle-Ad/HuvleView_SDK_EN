@@ -21,9 +21,6 @@ We will help you know how to affiliate with HuvleView; please visit this URL. ht
 ### 1. Manifest
 - Add networkSecurityConfig (If you target Android 10 (API level 29) or higher, set the value of android: requestLegacyExternalStorage.
 ```
-<uses-permission android:name="android.permission.INTERNET" />
-<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-        tools:ignore="ScopedStorage" />
 
 <application
 	.
@@ -101,50 +98,21 @@ Updating the app, how to process an Alert (warning sign) related with Native Con
 
 ### 3. Apply to your app
 - MainActivity
-+ Check the permission of onCreate.
-```java
-@Override
-protected void onCreate(Bundle savedInstanceState) {
-  super.onCreate( savedInstanceState );
-  setContentView( R.layout.activity_main );
-
-  if(!checkPermission()){
-		requestSapPermissions();
-	}
-}
-```
 
 + Add onResume
 ```java
 @Override
 public void onResume() {
 	super.onResume();
-
-	if(checkPermission()){
-		Sap_Func.setNotiBarLockScreen(this, false);
-		Sap_act_main_launcher.initsapStart(this, "bynetwork", true, true);
-	}
+	// huvleView apply
+	Sap_Func.setNotiBarLockScreen(this, false);
+	Sap_act_main_launcher.initsapStart(this, "bynetwork", true, true);
+	
 }
 ```
 Sap_act_main_launcher.initsapStart(this, “AgentKey”, true, True); You can ask Agent Key info to the network company, or if you run an independent company just enter the same ID you used to register at agent.huvle.com.
 
-+ Add permission settings.
-```java
-private boolean checkPermission(){
-	if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-		return checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED && checkSelfPermission(android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
-	}
-	return true;
-}
 
-private void requestSapPermissions() {
-	try{
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-		  requestPermissions(new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.READ_EXTERNAL_STORAGE}, 0);
-	}catch (Exception ignored){
-	}
-}
-```
 
 ### 4. When you customize Notification-bar/Approval window (It is applied in the sample app, when you do not customize, the process below is not necessary.)
 ```

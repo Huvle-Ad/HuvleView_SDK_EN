@@ -2,8 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.huvle.huvlesdk">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <!--
      TODO - Huvle Library
      Android 10(API 레벨 29) 이상을 타켓팅 경우 application에 android:requestLegacyExternalStorage="true" 추가
