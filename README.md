@@ -100,6 +100,7 @@ Updating the app, how to process an Alert (warning sign) related with Native Con
 - MainActivity
 
 + Add onResume
+- Java code
 ```java
 @Override
 public void onResume() {
@@ -110,6 +111,17 @@ public void onResume() {
 	
 }
 ```
+
+- Kotlin code
+```java
+override fun onResume() {
+	super.onResume()
+	// huvleView apply
+	Sap_Func.setNotiBarLockScreen(this,false)
+	Sap_act_main_launcher.initsapStart(this,"bynetwork",true,true)
+}
+```
+
 Sap_act_main_launcher.initsapStart(this, “AgentKey”, true, True); You can ask Agent Key info to the network company, or if you run an independent company just enter the same ID you used to register at agent.huvle.com.
 
 
@@ -123,6 +135,11 @@ Sap_act_main_launcher.initsapStart(this, “AgentKey”, true, True); You can as
 	Notification-bar icon : getNotibarIcon1() ~ getNotibarIcon5()
 	Notification-bar text : getNotibarString1() ~ getNotibarString5()
 	Corresponding action : callNotibar1() ~ callNotibar5()
+-When you activate Night theme, Notification bar's background color is automatically changed (It is able to be applied for Android OS 10 above)
+	add textColor style ("HuvleStatusbar") to valuse folder - themes folder - thems.xml / thems.xml(night) 
+	for Android Studio 4.1 below, add textColor style to values - styles folder - styles.xml / styles.xml(night)
+	add layout folder - lay_sap_act_noti.xml
+	apply HuvleStatusbar Style to all the portions of TextView in lay_sap_act_noti.xml
 ```
 
 [Shortcut to the previous guide page.](http://api.huvleview.com/ko/index.html)

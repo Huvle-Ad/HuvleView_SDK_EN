@@ -1,18 +1,13 @@
 package com.huvle.huvlesdk;
 
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationManagerCompat;
 
 import com.byappsoft.sap.launcher.Sap_act_main_launcher;
+import com.byappsoft.sap.main.Sap_act_main;
 import com.byappsoft.sap.utils.Sap_Func;
 
 public class MainActivity extends AppCompatActivity {
@@ -20,6 +15,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_main );
+
+
 
         //-- Notification On Event.
         findViewById(R.id.noti_on_btn).setOnClickListener(new View.OnClickListener() {

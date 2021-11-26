@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.net.Uri;
 
 import com.byappsoft.sap.launcher.NotibarConfig;
-import com.huvle.huvlesdk.R;
 
 public class CustomNotibarConfig extends NotibarConfig {
 
@@ -38,8 +37,8 @@ public class CustomNotibarConfig extends NotibarConfig {
     아래 주석 해제후 실행하시면 수정된 노티바를 확인하실 수 있습니다.
 */
 //
-//    public int getNotibarIcon1() { return com.huvle.huvlesdk.R.drawable.res_sap_ic_action_forward; }
-//    public int getNotibarString1() { return com.huvle.huvlesdk.R.string.custom_noti_icon_1; }
+//    public int getNotibarIcon1() { return com.example.huvlesdk_kotlin.R.drawable.res_sap_ic_action_forward; }
+//    public int getNotibarString1() { return com.example.huvlesdk_kotlin.R.string.custom_noti_icon_1; }
 //    public void callNotibar1(Activity activity, String nt) {
 //        try{
 //            Intent callIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://m.naver.com"));
