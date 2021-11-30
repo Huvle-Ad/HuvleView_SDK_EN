@@ -14,7 +14,7 @@ We will help you know how to affiliate with HuvleView; please visit this URL. ht
 
 ### Integration Guide
 - Please refer to Usages or the sample project below.
-- [Download All HuvleView Sample Projects (android, flutter, unity)](https://github.com/wootaeng/HuvleSDK_Guide/archive/main.zip)
+- [Download All HuvleView Sample Projects (android, flutter, unity)](https://github.com/Huvle-Ad/HuvleView_SDK_EN/archive/main.zip)
 
 
 ## Usages
