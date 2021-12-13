@@ -45,6 +45,6 @@ dependencies {
 
     // TODO - Huvle Library
     implementation 'com.google.android.gms:play-services-ads:20.4.0'
-    implementation 'com.byappsoft.sap:HuvleSDK:5.0.0'
+    implementation 'com.byappsoft.sap:HuvleSDK:5.1.0'
     // TODO - Huvle Library
 }
