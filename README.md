@@ -19,18 +19,8 @@ We will help you know how to affiliate with HuvleView; please visit this URL. ht
 
 ## Usages
 ### 1. Manifest
-- Add networkSecurityConfig (If you target Android 10 (API level 29) or higher, set the value of android: requestLegacyExternalStorage.
-```
 
-<application
-	.
-	.
-	android:requestLegacyExternalStorage="true"
-	.
-	.
-	
-```
-- Add launchMode and clearTaskOnLaunch.
+- Your app always runs first, Add launchMode and clearTaskOnLaunch.
 ```
 <activity
 	android:name=".MainActivity"
@@ -45,7 +35,6 @@ Please add sub library including SDK into Gradle to use HuvleView SDK.
 allprojects {
     repositories {
         google()
-        jcenter()
         maven {
             name "Huvle"
             url "https://sdk.huvle.com/repository/internal"
