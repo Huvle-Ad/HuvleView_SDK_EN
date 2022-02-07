@@ -111,7 +111,9 @@ override fun onResume() {
 }
 ```
 
-Sap_act_main_launcher.initsapStart(this, “AgentKey”, true, True); You can ask Agent Key info to the network company, or if you run an independent company just enter the same ID you used to register at agent.huvle.com.
+- For the "bynetwork" value above, please go to _http://agent.huvle.com/_ to sign up with filling in the **Agent key**   
+  the same as ID you want to register > ask for an approval of your account to huvle.  
+  If you have any inqury with integration, please contact us via our website.
 
 
 
