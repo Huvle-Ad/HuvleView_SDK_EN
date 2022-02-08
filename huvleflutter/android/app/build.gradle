@@ -22,23 +22,27 @@ if (flutterVersionName == null) {
 }
 
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion flutter.compileSdkVersion
 
-    lintOptions {
-        disable 'InvalidPackage'
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.huvle.huvleflutter"
-        minSdkVersion 16
-        targetSdkVersion 28
+        applicationId "com.huvle.huvlesdk.huvleflutter"
+        minSdkVersion flutter.minSdkVersion
+        targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        // TODO - Huvle Library Start
+        multiDexEnabled true
+        // TODO - Huvle Library End
     }
 
     buildTypes {
@@ -46,7 +50,9 @@ android {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig signingConfigs.debug
+
         }
+
     }
 }
 
@@ -55,14 +61,9 @@ flutter {
 }
 
 dependencies {
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+
     // TODO - Huvle Library Start
-    implementation 'com.google.android.gms:play-services-ads:19.0.0'
-    implementation('com.byappsoft.sap:HuvleSDK:4.0.1') {
-        changing = true
-        transitive = true
-    }
-    // TODO - Huvle Library End       
+    implementation 'com.google.android.gms:play-services-ads:20.4.0'
+    implementation 'com.byappsoft.sap:HuvleSDK:5.2.0'
+    implementation 'com.android.support:multidex:1.0.3'
 }

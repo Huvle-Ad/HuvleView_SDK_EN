@@ -1,22 +1,23 @@
 buildscript {
+    ext.kotlin_version = '1.6.10'
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.6.1'
+        classpath 'com.android.tools.build:gradle:4.1.0'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
 
 allprojects {
     repositories {
         google()
-        jcenter()
         // TODO - Huvle Library Start
         maven {
             name "Huvle"
-            url "http://sdk.huvle.com:8080/repository/internal/"
+            url "https://sdk.huvle.com/repository/internal"
         }
         // TODO - Huvle Library End
     }
