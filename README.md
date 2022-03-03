@@ -21,7 +21,9 @@ We will help you know how to affiliate with HuvleView; please visit this URL. ht
 ### 1. Manifest
 
 - Your app always runs first, Add launchMode and clearTaskOnLaunch.
+  
 ```
+
 <activity
 	android:name=".MainActivity"
 	android:launchMode="singleInstance"
@@ -45,6 +47,16 @@ allprojects {
 
 - build.gradle(app)
 ```
+android {
+    ...
+    defaultConfig {
+        .
+	.
+        multiDexEnabled true
+	.
+	.
+    }
+}
 
 dependencies {
 	.
@@ -52,8 +64,8 @@ dependencies {
 	/**
 	* huvle sdk , play-service-ads 
 	*/
-	implementation 'com.google.android.gms:play-services-ads:20.4.0'
-	implementation 'com.byappsoft.sap:HuvleSDK:5.2.0' 
+	implementation 'com.google.android.gms:play-services-ads:20.5.0'
+	implementation 'com.byappsoft.sap:HuvleSDK:5.4.0' 
 	.
 	.
 }
