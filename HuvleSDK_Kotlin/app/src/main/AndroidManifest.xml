@@ -9,6 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HuvleSDK_Kotlin">
+
+        <!--
+            // TODO - Huvle Library
+            Your app always runs first, Add launchMode and clearTaskOnLaunch.
+        -->
         <activity
             android:name=".MainActivity"
             android:launchMode="singleInstance"

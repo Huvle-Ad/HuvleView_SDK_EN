@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.huvle.huvlesdk">
 
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
 
 
     <application
@@ -13,11 +14,11 @@
         android:theme="@style/AppTheme">
         <!--
             TODO - Huvle Library
-            귀사의 앱을 실행하였을 경우 항상 귀사의 앱이 실행될 수 있도록 MainActivity 에
-            android:launchMode="singleInstance" 및 android:clearTaskOnLaunch="true" 정보를 추가합니다.
+            Your app always runs first, Add launchMode and clearTaskOnLaunch.
         -->
         <activity
             android:name=".MainActivity"
+            android:exported="true"
             android:launchMode="singleInstance"
             android:clearTaskOnLaunch="true">
             <intent-filter>
