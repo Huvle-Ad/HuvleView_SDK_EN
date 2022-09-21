@@ -8,7 +8,7 @@
 ##  Huvleview Install Guide 
 ## Usage
 ### 1. Download HuvleSDK aar 
-- [HuvleViewSDK 5.5.0.aar](https://sdk.huvle.com/repository/internal/com/byappsoft/sap/HuvleSDK/5.5.0/HuvleSDK-5.5.0.aar)
+- [HuvleViewSDK 5.5.0.aar](https://sdk.huvle.com/repository/internal/com/byappsoft/sap/HuvleSDK/5.5.4/HuvleSDK-5.5.4.aar)
 
 ### 2. Create HuvleSdkObject to Hierarchy
 
@@ -21,7 +21,7 @@
 ### 3. Register Huvle SDK to Project
 
 1. If ‘Plugins/Android’ is not existing below art of Assets, create the folder (Should distinguish name and uppercase lowercase actually)
-2. Drag and drop the downloaded file to Assets/Plugins/Android folder and register it (HuvleSDK-5.5.0.aar is the file)
+2. Drag and drop the downloaded file to Assets/Plugins/Android folder and register it (HuvleSDK-5.5.4.aar is the file)
 
 ![img2](./img/img2.png)
 
