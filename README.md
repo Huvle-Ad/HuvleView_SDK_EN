@@ -5,7 +5,7 @@
 
 You can easily integrate your app with Huvle SDK by using the sample code. Huvle SDK also supports Flutter or Unity 3D development environment.
 You can check the full contents of guide documents by downloading the files from the **“Download All HuvleView Sample Project”** menu below.
-Currently, the latest version of Huvle SDK is **5.5.4**. Huvle SDK is recommended to apply **TargetSDK 30** or more.
+Currently, the latest version of Huvle SDK is **5.5.7**. Huvle SDK is recommended to apply **TargetSDK 31** or more.
 
 
 ## Affiliate Application
@@ -64,7 +64,7 @@ dependencies {
 	* huvle sdk , play-service-ads 
 	*/
 	implementation 'com.google.android.gms:play-services-ads:20.5.0'
-	implementation 'com.byappsoft.sap:HuvleSDK:5.5.4' 
+	implementation 'com.byappsoft.sap:HuvleSDK:5.5.7' 
 	.
 	.
 }

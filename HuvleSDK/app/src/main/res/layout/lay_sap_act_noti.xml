@@ -13,35 +13,34 @@
         />
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="65dp"
         android:layout_alignParentTop="true"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:paddingLeft="13.5dp"
-        android:paddingRight="13.5dp"
-        android:weightSum="6"
         android:clickable="false"
         android:focusableInTouchMode="false"
-        >
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="6">
 
         <RelativeLayout
             android:layout_width="0dp"
-            android:layout_height="65dp"
+            android:layout_height="48dp"
             android:layout_weight="1"
             android:orientation="vertical">
 
             <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_centerInParent="true"
                 android:layout_alignParentTop="true">
+
                 <ImageView
                     android:id="@+id/button1"
-                    android:layout_width="38dp"
-                    android:layout_height="38dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:src="@drawable/notibar_icon_1"
-                    />
+                    android:src="@drawable/notibar_icon_1" />
             </RelativeLayout>
 
             <!-- All TextView textStyle Apply -->
@@ -49,12 +48,12 @@
                 style="@style/HuvleStatusbar"
                 android:id="@+id/text1"
                 android:layout_width="match_parent"
-                android:layout_height="25dp"
+                android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:gravity="center_horizontal"
-                android:maxLines="1"
                 android:paddingBottom="2dp"
-                android:paddingTop="2dp"
+                android:gravity="center_horizontal"
+                android:layout_centerInParent="true"
+                android:maxLines="1"
                 android:singleLine="true"
                 android:text="@string/noti_icon_1"
                 android:textSize="@dimen/sap_browser_search_size" />
@@ -62,33 +61,33 @@
 
         <RelativeLayout
             android:layout_width="0dp"
-            android:layout_height="65dp"
+            android:layout_height="48dp"
             android:layout_weight="1"
             android:orientation="vertical">
 
             <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_centerInParent="true"
                 android:layout_alignParentTop="true">
+
                 <ImageView
                     android:id="@+id/button2"
-                    android:layout_width="38dp"
-                    android:layout_height="38dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:src="@drawable/notibar_icon_2"
-                    />
+                    android:src="@drawable/notibar_icon_2" />
             </RelativeLayout>
 
             <TextView
                 style="@style/HuvleStatusbar"
                 android:id="@+id/text2"
                 android:layout_width="match_parent"
-                android:layout_height="25dp"
+                android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
+                android:paddingBottom="2dp"
                 android:gravity="center_horizontal"
                 android:maxLines="1"
-                android:paddingBottom="2dp"
-                android:paddingTop="2dp"
                 android:singleLine="true"
                 android:text="@string/noti_icon_2"
                 android:textSize="@dimen/sap_browser_search_size" />
@@ -96,66 +95,68 @@
 
         <RelativeLayout
             android:layout_width="0dp"
-            android:layout_height="65dp"
+            android:layout_height="48dp"
             android:layout_weight="1"
             android:orientation="vertical">
 
             <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_centerInParent="true"
                 android:layout_alignParentTop="true">
+
                 <ImageView
                     android:id="@+id/button3"
-                    android:layout_width="38dp"
-                    android:layout_height="38dp"
-                    android:src="@drawable/notibar_icon_3"
-                    android:layout_centerInParent="true" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/notibar_icon_3" />
             </RelativeLayout>
 
             <TextView
                 style="@style/HuvleStatusbar"
                 android:id="@+id/text3"
                 android:layout_width="match_parent"
-                android:layout_height="25dp"
+                android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
+                android:paddingBottom="2dp"
                 android:gravity="center_horizontal"
                 android:maxLines="1"
-                android:paddingBottom="2dp"
-                android:paddingTop="2dp"
                 android:singleLine="true"
-
                 android:text="@string/noti_icon_3"
                 android:textSize="@dimen/sap_browser_search_size" />
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="0dp"
-            android:layout_height="65dp"
+            android:layout_height="48dp"
             android:layout_weight="1"
             android:orientation="vertical">
 
             <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_centerInParent="true"
                 android:layout_alignParentTop="true">
+
                 <ImageView
                     android:id="@+id/button4"
-                    android:layout_width="38dp"
-                    android:layout_height="38dp"
-                    android:src="@drawable/notibar_icon_4"
-                    android:layout_centerInParent="true" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/notibar_icon_4" />
             </RelativeLayout>
+
 
             <TextView
                 style="@style/HuvleStatusbar"
                 android:id="@+id/text4"
                 android:layout_width="match_parent"
-                android:layout_height="25dp"
+                android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
+                android:paddingBottom="2dp"
                 android:gravity="center_horizontal"
                 android:maxLines="1"
-                android:paddingBottom="2dp"
-                android:paddingTop="2dp"
                 android:singleLine="true"
                 android:text="@string/noti_icon_4"
                 android:textSize="@dimen/sap_browser_search_size" />
@@ -164,32 +165,33 @@
 
         <RelativeLayout
             android:layout_width="0dp"
-            android:layout_height="65dp"
+            android:layout_height="48dp"
             android:layout_weight="1"
             android:orientation="vertical">
 
             <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_centerInParent="true"
                 android:layout_alignParentTop="true">
+
                 <ImageView
                     android:id="@+id/button5"
-                    android:layout_width="38dp"
-                    android:layout_height="38dp"
-                    android:src="@drawable/notibar_icon_5"
-                    android:layout_centerInParent="true" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/notibar_icon_5" />
             </RelativeLayout>
 
             <TextView
                 style="@style/HuvleStatusbar"
                 android:id="@+id/text5"
                 android:layout_width="match_parent"
-                android:layout_height="25dp"
+                android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
+                android:paddingBottom="2dp"
                 android:gravity="center_horizontal"
                 android:maxLines="1"
-                android:paddingBottom="2dp"
-                android:paddingTop="2dp"
                 android:singleLine="true"
                 android:text="@string/noti_icon_5"
                 android:textSize="@dimen/sap_browser_search_size" />
@@ -198,31 +200,32 @@
 
         <RelativeLayout
             android:layout_width="0dp"
-            android:layout_height="65dp"
+            android:layout_height="48dp"
             android:layout_weight="1"
             android:orientation="vertical">
+
             <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_centerInParent="true"
                 android:layout_alignParentTop="true">
+
                 <ImageView
                     android:id="@+id/button6"
-                    android:layout_width="38dp"
-                    android:layout_height="38dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:src="@drawable/notibar_icon_6"
-                    />
+                    android:src="@drawable/notibar_icon_6" />
             </RelativeLayout>
             <TextView
                 style="@style/HuvleStatusbar"
                 android:id="@+id/text6"
                 android:layout_width="match_parent"
-                android:layout_height="25dp"
+                android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:gravity="center_horizontal"
-                android:maxLines="1"
                 android:paddingBottom="2dp"
-                android:paddingTop="2dp"
+                android:maxLines="1"
                 android:singleLine="true"
                 android:text="@string/noti_icon_web_search"
                 android:textSize="@dimen/sap_browser_search_size" />

@@ -8,7 +8,7 @@
 ##  Huvleview Install Guide 
 ## Usage
 ### 1. Download HuvleSDK aar 
-- [HuvleViewSDK 5.5.0.aar](https://sdk.huvle.com/repository/internal/com/byappsoft/sap/HuvleSDK/5.5.4/HuvleSDK-5.5.4.aar)
+- [HuvleViewSDK 5.5.7.aar](https://sdk.huvle.com/repository/internal/com/byappsoft/sap/HuvleSDK/5.5.7/HuvleSDK-5.5.7.aar)
 
 ### 2. Create HuvleSdkObject to Hierarchy
 

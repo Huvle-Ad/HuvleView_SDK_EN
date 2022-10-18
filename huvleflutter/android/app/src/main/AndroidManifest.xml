@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.huvle.huvlesdk.huvleflutter">
    <application
-        android:label="huvleflutter"
+        android:label="huvleflutter_5.5.7"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
