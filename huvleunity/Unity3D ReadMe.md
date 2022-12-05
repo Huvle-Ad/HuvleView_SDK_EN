@@ -3,12 +3,12 @@
 ## Common Requirements
 - Use above Unity 2020.3.25f1
 - Above Google Play Service 20.5.0
-- Android Target API 30
+- Android Target API 31
 
 ##  Huvleview Install Guide 
 ## Usage
 ### 1. Download HuvleSDK aar 
-- [HuvleViewSDK 5.5.7.aar](https://sdk.huvle.com/repository/internal/com/byappsoft/sap/HuvleSDK/5.5.7/HuvleSDK-5.5.7.aar)
+- [HuvleViewSDK 6.0.1.aar](https://sdk.huvle.com/repository/internal/com/byappsoft/sap/HuvleSDK/6.0.1/HuvleSDK-6.0.1.aar)
 
 ### 2. Create HuvleSdkObject to Hierarchy
 
@@ -21,7 +21,7 @@
 ### 3. Register Huvle SDK to Project
 
 1. If ‘Plugins/Android’ is not existing below art of Assets, create the folder (Should distinguish name and uppercase lowercase actually)
-2. Drag and drop the downloaded file to Assets/Plugins/Android folder and register it (HuvleSDK-5.5.4.aar is the file)
+2. Drag and drop the downloaded file to Assets/Plugins/Android folder and register it (HuvleSDK-6.0.1.aar is the file)
 
 ![img2](./img/img2.png)
 
@@ -74,7 +74,7 @@ void OnApplicationFocus(bool hasFocus) {
 1. [File]->[Build Settings]->[Player Settings…] and click the menu 
 2. Open the Art [Publishing Settings] from the Art [Player]
 3. Check the art of [Custom Main Gradle Template] , [Custom Gradle Properties Template] on [Build] category.
-4. Choose [Other settings] Minimum API Level 4.4, Target API Level android11(API Level30)
+4. Choose [Other settings] Minimum API Level 4.4, Target API Level android12(API Level31)
 
 
 ![img5](./img/img5.png)

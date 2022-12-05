@@ -146,17 +146,9 @@ override fun onResume() {
   the same as ID you want to register > ask for an approval of your account to huvle.  
   If you have any inqury with integration, please contact us via our website.
 
-### 4. Apply HUID for Advertising Targeting
-- Respnse to Google's policy about the deprecation of 3rd party cookies 
-- HUID function for increasing Ads Target efficiency 
-- You can get and apply **"HUID key"** after SDK alliance progress particularly.
 
-```java
-- res folder - value folder - string.xml add
-<string name="huvle_adtech_id">com.byappsoft.sap."Huid key"</string>
-```
 
-### 5. When you customize Notification-bar/Approval window (It is applied in the sample app, when you do not customize, the process below is not necessary.)
+### 4. When you customize Notification-bar/Approval window (It is applied in the sample app, when you do not customize, the process below is not necessary.)
 ```
 - Add com\byappsoft\sap\CustomNotibarConfig.java into your app and then change. (When you use normal mode, all comment out or do not add it.)
 - Method regarding to Approval window
@@ -171,7 +163,7 @@ override fun onResume() {
 	add layout folder - lay_sap_act_noti.xml
 	apply HuvleStatusbar Style to all the portions of TextView in lay_sap_act_noti.xml
 ```
-[Shortcuts to existing guide pages](./Guide/README.md)
+
 
 
 

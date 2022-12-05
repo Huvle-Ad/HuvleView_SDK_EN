@@ -1,4 +1,6 @@
 <resources>
-    <string name="app_name">HuvleSDK 5.5.7_Kotlin</string>
+    <string name="app_name">HuvleSDK 6.0.1</string>
     <string name="custom_noti_icon_1">Test</string>
+    <!--    You can get "huid and apply -->
+    <!--    <string name="huvle_adtech_id">com.byappsoft.sap."you get huid"</string>-->
 </resources>
