@@ -73,10 +73,11 @@ dependencies {
 	.
 	.
 	/**
-	* huvle sdk , play-service-ads 
+	* huvle sdk , huvle huid ,  play-service-ads 
 	*/
 	implementation 'com.google.android.gms:play-services-ads:20.5.0'
 	implementation 'com.byappsoft.sap:HuvleSDK:6.0.1' 
+	implementation 'com.byappsoft.huvleuid:huid:0.0.12'
 	.
 	.
 }
@@ -117,6 +118,10 @@ Updating the app, how to process an Alert (warning sign) related with Native Con
 @Override
 public void onResume() {
 	super.onResume();
+
+	//-- Huid aplly
+	HuidManager.onResume(this);
+	Sap_act_main_launcher.onResume(this);
 	// huvleView apply
 	Sap_Func.setNotiBarLockScreen(this, false);
 	Sap_act_main_launcher.initsapStart(this, "bynetwork", true, true);
@@ -136,6 +141,9 @@ public void onResume() {
 ```java
 override fun onResume() {
 	super.onResume()
+	//-- Huid aplly
+	HuidManager.onResume(this)
+	Sap_act_main_launcher.onResume(this)
 	// huvleView apply
 	Sap_Func.setNotiBarLockScreen(this,false)
 	Sap_act_main_launcher.initsapStart(this,"bynetwork",true,true)

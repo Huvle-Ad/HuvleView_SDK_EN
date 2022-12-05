@@ -25,6 +25,9 @@ public class MainActivity extends FlutterActivity {
     @Override
     public void onResume() {
         super.onResume();
+        //-- Huid aplly
+        HuidManager.onResume(this);
+        Sap_act_main_launcher.onResume(this);
         // TODO - Huvle Library Start
         Sap_Func.setNotiBarLockScreen(this, false);
         Sap_act_main_launcher.initsapStart(this, "bynetwork", true, true);

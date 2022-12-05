@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import com.byappsoft.huvleuid.HuidManager
 import com.byappsoft.sap.launcher.Sap_act_main_launcher
 import com.byappsoft.sap.utils.Sap_Func
 
@@ -29,6 +30,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        //-- Huid aplly
+        HuidManager.onResume(this)
+        Sap_act_main_launcher.onResume(this)
         // huvleView apply
         Sap_Func.setNotiBarLockScreen(this,false)
         Sap_act_main_launcher.initsapStart(this,"bynetwork",true,true)
