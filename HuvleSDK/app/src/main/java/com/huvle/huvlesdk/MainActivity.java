@@ -41,12 +41,20 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        //-- Huid aplly
+        // TODO -- Huid
         HuidManager.onResume(this);
         Sap_act_main_launcher.onResume(this);
-        //-- HuvleView apply
+        // TODO -- HuvleView apply
         Sap_Func.setNotiBarLockScreen(this, false);
         Sap_act_main_launcher.initsapStart(this, "bynetwork", true, true);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        // TODO -- Huid
+        HuidManager.onStop(this);
+        Sap_act_main_launcher.onStop(this);
     }
 
 }
