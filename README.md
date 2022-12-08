@@ -189,11 +189,30 @@ override fun onStop() {
 	Notification-bar icon : getNotibarIcon1() ~ getNotibarIcon5()
 	Notification-bar text : getNotibarString1() ~ getNotibarString5()
 	Corresponding action : callNotibar1() ~ callNotibar5()
+	
 -When you activate Night theme, Notification bar's background color is automatically changed (It is able to be applied for Android OS 10 above)
 	add textColor style ("HuvleStatusbar") to valuse folder - themes folder - thems.xml / thems.xml(night) 
 	for Android Studio 4.1 below, add textColor style to values - styles folder - styles.xml / styles.xml(night)
+
+	<!-- Notibar text color custom -->
+    <style name="HuvleStatusbar" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/black</item>
+    </style>
+	<!-- Notibar darkmode text color custom -->
+    <style name="HuvleStatusbar" parent="@android:style/TextAppearance">
+        <item name="android:textColor">#ffffff</item>
+    </style>
+
 	add layout folder - lay_sap_act_noti.xml
 	apply HuvleStatusbar Style to all the portions of TextView in lay_sap_act_noti.xml
+
+	<!-- All TextView textStyle Apply -->
+	<TextView
+		style="@style/HuvleStatusbar"
+		android:id="@+id/text1"
+		android:layout_width="match_parent"
+	.
+	.
 ```
 [Shortcuts to existing guide pages](./Guide/README.md)
 
