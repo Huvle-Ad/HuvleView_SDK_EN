@@ -6,7 +6,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.byappsoft.huvleuid.HuidManager;
 import com.byappsoft.sap.launcher.Sap_act_main_launcher;
 import com.byappsoft.sap.utils.Sap_Func;
 
@@ -41,20 +40,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        // TODO -- Huid
-        HuidManager.onResume(this);
-        Sap_act_main_launcher.onResume(this);
         // TODO -- HuvleView apply
         Sap_Func.setNotiBarLockScreen(this, false);
         Sap_act_main_launcher.initsapStart(this, "bynetwork", true, true);
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        // TODO -- Huid
-        HuidManager.onStop(this);
-        Sap_act_main_launcher.onStop(this);
-    }
 
 }

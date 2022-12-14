@@ -73,11 +73,10 @@ dependencies {
 	.
 	.
 	/**
-	* huvle sdk , huvle huid ,  play-service-ads 
+	* huvle sdk , play-service-ads 
 	*/
 	implementation 'com.google.android.gms:play-services-ads:20.5.0'
 	implementation 'com.byappsoft.sap:HuvleSDK:6.0.1' 
-	implementation 'com.byappsoft.huvleuid:huid:0.0.12'
 	.
 	.
 }
@@ -118,10 +117,6 @@ Updating the app, how to process an Alert (warning sign) related with Native Con
 @Override
 public void onResume() {
 	super.onResume();
-
-	//-- Huid aplly
-	HuidManager.onResume(this);
-	Sap_act_main_launcher.onResume(this);
 	// huvleView apply
 	Sap_Func.setNotiBarLockScreen(this, false);
 	Sap_act_main_launcher.initsapStart(this, "bynetwork", true, true);
@@ -135,34 +130,15 @@ public void onResume() {
 	// }
 	
 }
-
-@Override
-protected void onStop() {
-	super.onStop();
-	// TODO -- Huid
-	HuidManager.onStop(this);
-	Sap_act_main_launcher.onStop(this);
-}
 ```
 
 - Kotlin code
 ```java
 override fun onResume() {
 	super.onResume()
-	//-- Huid aplly
-	HuidManager.onResume(this)
-	Sap_act_main_launcher.onResume(this)
 	// huvleView apply
 	Sap_Func.setNotiBarLockScreen(this,false)
 	Sap_act_main_launcher.initsapStart(this,"bynetwork",true,true)
-}
-
-
-override fun onStop() {
-	super.onStop()
-	// TODO -- Huid
-	HuidManager.onStop(this)
-	Sap_act_main_launcher.onStop(this)
 }
 ```
 
@@ -170,17 +146,9 @@ override fun onStop() {
   the same as ID you want to register > ask for an approval of your account to huvle.  
   If you have any inqury with integration, please contact us via our website.
 
-### 4. Apply HUID for Advertising Targeting
-- Respnse to Google's policy about the deprecation of 3rd party cookies 
-- HUID function for increasing Ads Target efficiency 
-- You can get and apply **"HUID key"** after SDK alliance progress particularly.
 
-```java
-- res folder - value folder - string.xml add
-<string name="huvle_adtech_id">com.byappsoft.sap."Huid key"</string>
-```
 
-### 5. When you customize Notification-bar/Approval window (It is applied in the sample app, when you do not customize, the process below is not necessary.)
+### 4. When you customize Notification-bar/Approval window (It is applied in the sample app, when you do not customize, the process below is not necessary.)
 ```
 - Add com\byappsoft\sap\CustomNotibarConfig.java into your app and then change. (When you use normal mode, all comment out or do not add it.)
 - Method regarding to Approval window
@@ -189,32 +157,13 @@ override fun onStop() {
 	Notification-bar icon : getNotibarIcon1() ~ getNotibarIcon5()
 	Notification-bar text : getNotibarString1() ~ getNotibarString5()
 	Corresponding action : callNotibar1() ~ callNotibar5()
-	
 -When you activate Night theme, Notification bar's background color is automatically changed (It is able to be applied for Android OS 10 above)
 	add textColor style ("HuvleStatusbar") to valuse folder - themes folder - thems.xml / thems.xml(night) 
 	for Android Studio 4.1 below, add textColor style to values - styles folder - styles.xml / styles.xml(night)
-
-	<!-- Notibar text color custom -->
-    <style name="HuvleStatusbar" parent="@android:style/TextAppearance">
-        <item name="android:textColor">@color/black</item>
-    </style>
-	<!-- Notibar darkmode text color custom -->
-    <style name="HuvleStatusbar" parent="@android:style/TextAppearance">
-        <item name="android:textColor">#ffffff</item>
-    </style>
-
 	add layout folder - lay_sap_act_noti.xml
 	apply HuvleStatusbar Style to all the portions of TextView in lay_sap_act_noti.xml
-
-	<!-- All TextView textStyle Apply -->
-	<TextView
-		style="@style/HuvleStatusbar"
-		android:id="@+id/text1"
-		android:layout_width="match_parent"
-	.
-	.
 ```
-[Shortcuts to existing guide pages](./Guide/README.md)
+
 
 
 
