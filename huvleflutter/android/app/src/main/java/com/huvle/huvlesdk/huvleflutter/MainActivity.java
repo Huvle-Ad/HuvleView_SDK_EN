@@ -1,5 +1,6 @@
 package com.huvle.huvlesdk.huvleflutter;
 
+
 import androidx.annotation.NonNull;
 
 import com.byappsoft.sap.launcher.Sap_act_main_launcher;
@@ -30,6 +31,5 @@ public class MainActivity extends FlutterActivity {
         Sap_act_main_launcher.initsapStart(this, "bynetwork", true, true);
         // TODO - Huvle Library End
     }
-
 
 }
