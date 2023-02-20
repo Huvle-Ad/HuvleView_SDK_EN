@@ -146,9 +146,91 @@ override fun onResume() {
   the same as ID you want to register > ask for an approval of your account to huvle.  
   If you have any inqury with integration, please contact us via our website.
 
+### 4. Request permission for display over other app after the Huvleview dialog
 
+- Add  Display over other app Permission
+```
+<manifest>
+...
+	<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" /> 
+...
+</manifest>
+```
 
-### 4. When you customize Notification-bar/Approval window (It is applied in the sample app, when you do not customize, the process below is not necessary.)
+- onCreate 
+```java
+protected void onCreate(Bundle savedInstanceState) {
+	super.onCreate(savedInstanceState);
+	setContentView(R.layout.activity_main);
+
+	if(!checkPermission()){
+		requestSapPermissions();
+	}
+
+}
+```
+
++ onResume Huvleview interface use
+```java
+public void onResume() {
+	Sap_Func.setNotiBarLockScreen(this, false);
+	Sap_act_main_launcher.initsapStart(this, "bynetwork", true, true, new Sap_act_main_launcher.OnLauncher() {
+
+		@Override
+		public void onDialogOkClicked() { //after huvleview dialog Click 'ok'
+			checkDrawOverlayPermission();
+		}
+
+		@Override
+		public void onDialogCancelClicked() {} 
+
+		@Override
+		public void onInitSapStartapp() {}
+
+		@Override
+		public void onUnknown() {}
+	});
+}
+```
+
+```java
+public boolean checkDrawOverlayPermission() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            return true;
+        }
+        if (!Settings.canDrawOverlays(this)) {
+            new AlertDialog.Builder(this)
+                    .setTitle("display over other app")
+                    .setMessage("Please allow display over other app permission.")
+                    .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent();
+                            intent.setAction(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
+                            Uri uri = Uri.parse("package:" + getPackageName());
+                            intent.setData(uri);
+                            startActivity(intent);
+
+                        }
+                    })
+                    .setNegativeButton("cancle", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    })
+                    .create()
+                    .show();
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    
+```
+
+### 5. When you customize Notification-bar/Approval window (It is applied in the sample app, when you do not customize, the process below is not necessary.)
 ```
 - Add com\byappsoft\sap\CustomNotibarConfig.java into your app and then change. (When you use normal mode, all comment out or do not add it.)
 - Method regarding to Approval window
