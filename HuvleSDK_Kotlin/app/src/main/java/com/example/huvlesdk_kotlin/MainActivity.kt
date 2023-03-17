@@ -1,6 +1,11 @@
 package com.example.huvlesdk_kotlin
 
+import android.app.AlertDialog
+import android.content.Intent
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -28,9 +33,50 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        // huvleView apply
+        // TODO-- huvleView apply
         Sap_Func.setNotiBarLockScreen(this,false)
-        Sap_act_main_launcher.initsapStart(this,"bynetwork",true,true)
+        Sap_act_main_launcher.initsapStart(this,"bynetwork",true,true,
+            object : Sap_act_main_launcher.OnLauncher {
+                override fun onDialogOkClicked() {
+                    checkDrawOverlayPermission()
+                }
+
+                override fun onDialogCancelClicked() {
+                }
+
+                override fun onInitSapStartapp() {
+                }
+
+                override fun onUnknown() {
+                }
+
+            })
+    }
+
+    private fun checkDrawOverlayPermission(): Boolean {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            return true
+        }
+        return if (!Settings.canDrawOverlays(this)) {
+            AlertDialog.Builder(this)
+                .setTitle("Display over other apps")
+                .setMessage("Please allow permission to Display over other apps.")
+                .setPositiveButton("ok") { dialog, which ->
+                    val intent = Intent()
+                    intent.action = Settings.ACTION_MANAGE_OVERLAY_PERMISSION
+                    val uri = Uri.parse("package:$packageName")
+                    intent.data = uri
+                    startActivity(intent)
+                }
+                .setNegativeButton(
+                    "cancle"
+                ) { dialog, which -> dialog.cancel() }
+                .create()
+                .show()
+            false
+        } else {
+            true
+        }
     }
 
 
