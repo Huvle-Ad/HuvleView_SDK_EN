@@ -5,7 +5,7 @@
 
 You can easily integrate your app with Huvle SDK by using the sample code. Huvle SDK also supports Flutter or Unity 3D development environment.
 You can check the full contents of guide documents by downloading the files from the **“Download All HuvleView Sample Project”** menu below.
-Huvle SDK is recommended to apply **TargetSDK 31** or more.
+Huvle SDK is recommended to apply **TargetSDK 33** or more.
 
 
 ## Affiliate Application
