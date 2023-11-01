@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.huvlesdk_kotlin"
-        minSdk 21
+        minSdk 23
         targetSdk 33
         versionCode 1
         versionName "1.0"
@@ -44,7 +44,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     // TODO - Huvle Library
-    implementation 'com.google.android.gms:play-services-ads:20.5.0'
-    implementation 'com.byappsoft.sap:HuvleSDK:6.1.1'
+    implementation 'com.google.android.gms:play-services-ads-identifier:18.0.1'
+    implementation 'com.byappsoft.sap:HuvleSDK:6.1.3'
     // TODO - Huvle Library
 }
