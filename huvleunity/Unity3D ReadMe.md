@@ -3,7 +3,7 @@
 ## Common Requirements
 - Use above Unity 2020.3.25f1
 - Above Google Play Service 20.5.0
-- Android Target API 31
+- Android Target API 33
 
 ##  Huvleview Install Guide 
 ## Usage
@@ -74,7 +74,7 @@ void OnApplicationFocus(bool hasFocus) {
 1. [File]->[Build Settings]->[Player Settings…] and click the menu 
 2. Open the Art [Publishing Settings] from the Art [Player]
 3. Check the art of [Custom Main Gradle Template] , [Custom Gradle Properties Template] on [Build] category.
-4. Choose [Other settings] Minimum API Level 4.4, Target API Level android12(API Level31)
+4. Choose [Other settings] Minimum API Level 23, Target API Level android13(API Level 33)
 
 
 ![img5](./img/img5.png)
@@ -92,7 +92,7 @@ dependencies {
 
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support:support-v4:28.0.0'
-    implementation 'com.google.android.gms:play-services-ads:20.5.0'
+    implementation 'com.google.android.gms:play-services-ads-identifier:18.0.1'
 
 **DEPS**}
 .

@@ -21,25 +21,18 @@ We will help you know how to affiliate with HuvleView; please visit this URL. ht
 ### 1. Manifest
 
 - Add Google AdID permission.
-```
-<manifest>
-...
-    <uses-permission android:name="com.google.android.gms.permission.AD_ID" /> 
-...
-</manifest>
-```
-
 - if APP Taget SDK 33 higher Add POST_NOTIFICATION permission.
 - [google developer](https://developer.android.com/develop/ui/views/notifications/notification-permission?hl=en)
 
-```java
+```
 <manifest>
 ...
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/> 
 ...
 </manifest>
-
 ```
+
 
 - Your app always runs first, Add launchMode and clearTaskOnLaunch.
   
@@ -119,31 +112,51 @@ Updating the app, how to process an Alert (warning sign) related with Native Con
 public void onResume() {
 	super.onResume();
 	// huvleView apply
-	Sap_Func.setNotiBarLockScreen(this, false);
-	Sap_act_main_launcher.initsapStart(this, "bynetwork", true, true, new Sap_act_main_launcher.OnLauncher() {
+	if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (checkPermission()) {
+                Sap_Func.setNotiBarLockScreen(this, false);
+                Sap_act_main_launcher.initsapStart(this, "bynetwork", true, true, new Sap_act_main_launcher.OnLauncher() {
 
-		@Override
-		public void onDialogOkClicked() { 
-			checkDrawOverlayPermission();
-		}
+                    @Override
+                    public void onDialogOkClicked() { 
+                        checkDrawOverlayPermission();
+                    }
 
-		@Override
-		public void onDialogCancelClicked() {} 
+                    @Override
+                    public void onDialogCancelClicked() {
+                    }
 
-		@Override
-		public void onInitSapStartapp() {}
+                    @Override
+                    public void onInitSapStartapp() {
+                    }
 
-		@Override
-		public void onUnknown() {}
-	});
+                    @Override
+                    public void onUnknown() {
+                    }
+                });
+            }
+        } else {
+            Sap_Func.setNotiBarLockScreen(this, false);
+            Sap_act_main_launcher.initsapStart(this, "bynetwork", true, true, new Sap_act_main_launcher.OnLauncher() {
 
-	// APP target 33 higher after POST_NOTIFICATION permission 
-	// huvleView apply
-	// if(Post_notification){
-	// 	Sap_Func.setNotiBarLockScreen(this, false);
-	// 	Sap_act_main_launcher.initsapStart(
-    //  this, "bynetwork", true, true, new Sap_act_main_launcher.OnLauncher() {...});
-	
+                @Override
+                public void onDialogOkClicked() { 
+                    checkDrawOverlayPermission();
+                }
+
+                @Override
+                public void onDialogCancelClicked() {
+                }
+
+                @Override
+                public void onInitSapStartapp() {
+                }
+
+                @Override
+                public void onUnknown() {
+                }
+            });
+        }
 }
 
 public boolean checkDrawOverlayPermission() {
@@ -185,23 +198,43 @@ public boolean checkDrawOverlayPermission() {
  override fun onResume() {
         super.onResume()
         // TODO-- huvleView apply
-        Sap_Func.setNotiBarLockScreen(this,false)
-        Sap_act_main_launcher.initsapStart(this,"bynetwork",true,true,
-            object : Sap_act_main_launcher.OnLauncher {
-                override fun onDialogOkClicked() {
-                    checkDrawOverlayPermission()
-                }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            Sap_Func.setNotiBarLockScreen(this,false)
+            Sap_act_main_launcher.initsapStart(this,"bynetwork",true,true,
+                object : Sap_act_main_launcher.OnLauncher {
+                    override fun onDialogOkClicked() {
+                        checkDrawOverlayPermission()
+                    }
 
-                override fun onDialogCancelClicked() {
-                }
+                    override fun onDialogCancelClicked() {
+                    }
 
-                override fun onInitSapStartapp() {
-                }
+                    override fun onInitSapStartapp() {
+                    }
 
-                override fun onUnknown() {
-                }
+                    override fun onUnknown() {
+                    }
 
-            })
+                })
+        } else {
+            Sap_Func.setNotiBarLockScreen(this,false)
+            Sap_act_main_launcher.initsapStart(this,"bynetwork",true,true,
+                object : Sap_act_main_launcher.OnLauncher {
+                    override fun onDialogOkClicked() {
+                        checkDrawOverlayPermission()
+                    }
+
+                    override fun onDialogCancelClicked() {
+                    }
+
+                    override fun onInitSapStartapp() {
+                    }
+
+                    override fun onUnknown() {
+                    }
+
+                })
+        }
     }
 
     private fun checkDrawOverlayPermission(): Boolean {
