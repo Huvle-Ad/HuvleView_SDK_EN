@@ -1,7 +1,9 @@
 package com.example.huvlesdk_kotlin
 
 import android.Manifest
+import android.app.AlarmManager
 import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -23,6 +25,10 @@ class MainActivity : AppCompatActivity() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             if (!checkPermission()) {
                 requestSapPermissions()
+            } else {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+                    checkExactAlarm()
+                }
             }
         }
 
@@ -44,41 +50,62 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
         // TODO-- huvleView apply
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            Sap_Func.setNotiBarLockScreen(this,false)
-            Sap_act_main_launcher.initsapStart(this,"bynetwork",true,true,
-                object : Sap_act_main_launcher.OnLauncher {
-                    override fun onDialogOkClicked() {
-                        checkDrawOverlayPermission()
-                    }
-
-                    override fun onDialogCancelClicked() {
-                    }
-
-                    override fun onInitSapStartapp() {
-                    }
-
-                    override fun onUnknown() {
-                    }
-
-                })
+            if (checkPermission()) {
+                if (Build.VERSION.SDK_INT >= 34) {
+                    Sap_Func.setServiceState(this,true)
+                }
+                huvleView()
+            }
         } else {
-            Sap_Func.setNotiBarLockScreen(this,false)
-            Sap_act_main_launcher.initsapStart(this,"bynetwork",true,true,
-                object : Sap_act_main_launcher.OnLauncher {
-                    override fun onDialogOkClicked() {
-                        checkDrawOverlayPermission()
-                    }
+            huvleView()
+        }
+    }
 
-                    override fun onDialogCancelClicked() {
-                    }
+    private fun huvleView() {
+        Sap_Func.setNotiBarLockScreen(this,false)
+        Sap_act_main_launcher.initsapStart(this,"bynetwork",true,true,
+            object : Sap_act_main_launcher.OnLauncher {
+                override fun onDialogOkClicked() {
+                    checkDrawOverlayPermission()
+                }
 
-                    override fun onInitSapStartapp() {
-                    }
+                override fun onDialogCancelClicked() {
+                }
 
-                    override fun onUnknown() {
-                    }
+                override fun onInitSapStartapp() {
+                }
 
-                })
+                override fun onUnknown() {
+                }
+
+            })
+    }
+
+    private fun checkExactAlarm(): Boolean {
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.S) {
+            return true
+        }
+
+        val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val canScheduleExactAlarms = alarmManager.canScheduleExactAlarms()
+
+        if (!canScheduleExactAlarms) {
+            AlertDialog.Builder(this)
+                .setTitle("Allow notifications and reminders")
+                .setMessage("Please allow notification and reminder permissions.")
+                .setPositiveButton("ok") { _, _ ->
+                    val intent = Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM)
+                    intent.data = Uri.parse("package:$packageName")
+                    startActivity(intent)
+                }
+                .setNegativeButton("cancle") { dialog, _ ->
+                    dialog.cancel()
+                }
+                .create()
+                .show()
+            return false
+        } else {
+            return true
         }
     }
 
@@ -105,6 +132,17 @@ class MainActivity : AppCompatActivity() {
             false
         } else {
             true
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == 0) {
+            if (checkPermission()) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+                    checkExactAlarm()
+                }
+            }
         }
     }
 

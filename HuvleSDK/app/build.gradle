@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdk 33
+    compileSdk 34
 
 
     defaultConfig {
         applicationId "com.huvle.huvlesdk"
         minSdk 23
-        targetSdk 33
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
@@ -37,6 +37,6 @@ dependencies {
 
     // TODO - Huvle Library
     implementation 'com.google.android.gms:play-services-ads-identifier:18.0.1'
-    implementation 'com.byappsoft.sap:HuvleSDK:6.1.5'
+    implementation 'com.byappsoft.sap:HuvleSDK:6.2.0'
     // TODO - Huvle Library
 }

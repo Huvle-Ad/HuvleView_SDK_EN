@@ -2,7 +2,9 @@ package com.huvle.huvlesdk.huvleflutter;
 
 
 import android.Manifest;
+import android.app.AlarmManager;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -34,6 +36,10 @@ public class MainActivity extends FlutterActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             if(!checkPermission()){
                 requestSapPermissions();
+            } else {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+                    checkExactAlarm();
+                }
             }
         }
 
@@ -45,51 +51,72 @@ public class MainActivity extends FlutterActivity {
         // TODO -- HuvleView apply
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             if (checkPermission()) {
-                Sap_Func.setNotiBarLockScreen(this, false);
-                Sap_act_main_launcher.initsapStart(this, "bynetwork", true, true, new Sap_act_main_launcher.OnLauncher() {
-
-                    @Override
-                    public void onDialogOkClicked() { //허블뷰 동의창 확인 후 작업
-                        checkDrawOverlayPermission();
-                    }
-
-                    @Override
-                    public void onDialogCancelClicked() {
-                    }
-
-                    @Override
-                    public void onInitSapStartapp() {
-                    }
-
-                    @Override
-                    public void onUnknown() {
-                    }
-                });
+                if (Build.VERSION.SDK_INT >= 34) {
+                    Sap_Func.setServiceState(this,true);
+                }
+                huvleView();
             }
         } else {
-            Sap_Func.setNotiBarLockScreen(this, false);
-            Sap_act_main_launcher.initsapStart(this, "bynetwork", true, true, new Sap_act_main_launcher.OnLauncher() {
-
-                @Override
-                public void onDialogOkClicked() { //허블뷰 동의창 확인 후 작업
-                    checkDrawOverlayPermission();
-                }
-
-                @Override
-                public void onDialogCancelClicked() {
-                }
-
-                @Override
-                public void onInitSapStartapp() {
-                }
-
-                @Override
-                public void onUnknown() {
-                }
-            });
+            huvleView();
         }
     }
 
+    public void huvleView() {
+        Sap_Func.setNotiBarLockScreen(this, false);
+        Sap_act_main_launcher.initsapStart(this, "bynetwork", true, true, new Sap_act_main_launcher.OnLauncher() {
+
+            @Override
+            public void onDialogOkClicked() { //허블뷰 동의창 확인 후 작업
+                checkDrawOverlayPermission();
+            }
+
+            @Override
+            public void onDialogCancelClicked() {
+            }
+
+            @Override
+            public void onInitSapStartapp() {
+            }
+
+            @Override
+            public void onUnknown() {
+            }
+        });
+    }
+
+    public boolean checkExactAlarm() {
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.S) {
+            return true;
+        }
+
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        boolean canScheduleExactAlarms = alarmManager.canScheduleExactAlarms();
+
+        if (!canScheduleExactAlarms) {
+            new AlertDialog.Builder(this)
+                    .setTitle("Allow notifications and reminders")
+                    .setMessage("Please allow notification and reminder permissions.")
+                    .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM);
+                            intent.setData(Uri.parse("package:" + getPackageName()));
+                            startActivity(intent);
+                        }
+                    })
+                    .setNegativeButton("cancle", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    })
+                    .create()
+                    .show();
+            return false;
+        } else {
+            return true;
+        }
+    }
 
     public boolean checkDrawOverlayPermission() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
