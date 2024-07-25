@@ -5,7 +5,7 @@
 
 You can easily integrate your app with Huvle SDK by using the sample code. Huvle SDK also supports Flutter or Unity 3D development environment.
 You can check the full contents of guide documents by downloading the files from the **“Download All HuvleView Sample Project”** menu below.
-Huvle SDK is recommended to apply **TargetSDK 33** or more.
+Huvle SDK is recommended to apply **TargetSDK 34** or more.
 
 
 ## Affiliate Application
@@ -30,6 +30,24 @@ We will help you know how to affiliate with HuvleView; please visit this URL. ht
     <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/> 
 ...
+</manifest>
+```
+- if APP Taget SDK 34 higher Specify ForegroundSERVICE TYPE in Manifest
+- [google developer](https://developer.android.com/about/versions/14/changes/fgs-types-required?hl=en#use-cases)
+```
+<manifest>
+'''
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />-->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+
+    <service
+        android:name="com.byappsoft.sap.service.HuvleNotiBarService"
+        android:exported="true"
+        android:foregroundServiceType="specialUse">
+        <property android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+            android:value="explanation_for_special_use"/>
+    </service>
+'''
 </manifest>
 ```
 
@@ -105,163 +123,233 @@ Updating the app, how to process an Alert (warning sign) related with Native Con
 ### 3. Apply to your app
 - MainActivity
 
-+ Add onResume
 - Java code
 ```java
+
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    // android OS >= 13 Post_NOTIFICATION permission check
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        if(!checkPermission()){
+            requestSapPermissions();
+        } else { // android OS >= 14 notifications and reminders check
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+                checkExactAlarm();
+            }
+        }
+    }
+}
+
 @Override
 public void onResume() {
-	super.onResume();
-	// huvleView apply
-	if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            if (checkPermission()) {
-                Sap_Func.setNotiBarLockScreen(this, false);
-                Sap_act_main_launcher.initsapStart(this, "bynetwork", true, true, new Sap_act_main_launcher.OnLauncher() {
-
-                    @Override
-                    public void onDialogOkClicked() { 
-                        checkDrawOverlayPermission();
-                    }
-
-                    @Override
-                    public void onDialogCancelClicked() {
-                    }
-
-                    @Override
-                    public void onInitSapStartapp() {
-                    }
-
-                    @Override
-                    public void onUnknown() {
-                    }
-                });
+    super.onResume();
+    // TODO -- HuvleView apply
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        if (checkPermission()) {
+            if (Build.VERSION.SDK_INT >= 34) {
+                Sap_Func.setServiceState(this,true);
             }
-        } else {
-            Sap_Func.setNotiBarLockScreen(this, false);
-            Sap_act_main_launcher.initsapStart(this, "bynetwork", true, true, new Sap_act_main_launcher.OnLauncher() {
-
-                @Override
-                public void onDialogOkClicked() { 
-                    checkDrawOverlayPermission();
-                }
-
-                @Override
-                public void onDialogCancelClicked() {
-                }
-
-                @Override
-                public void onInitSapStartapp() {
-                }
-
-                @Override
-                public void onUnknown() {
-                }
-            });
+            huvleView();
         }
+    } else {
+        huvleView();
+    }
+}
+
+public void huvleView() {
+    Sap_Func.setNotiBarLockScreen(this, false);
+    Sap_act_main_launcher.initsapStart(this, "bynetwork", true, true, new Sap_act_main_launcher.OnLauncher() {
+
+        @Override
+        public void onDialogOkClicked() { 
+            checkDrawOverlayPermission();
+        }
+
+        @Override
+        public void onDialogCancelClicked() {
+        }
+
+        @Override
+        public void onInitSapStartapp() {
+        }
+
+        @Override
+        public void onUnknown() {
+        }
+    });
+}
+
+public boolean checkExactAlarm() {
+    if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.S) {
+        return true;
+    }
+
+    AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+    boolean canScheduleExactAlarms = alarmManager.canScheduleExactAlarms();
+
+    if (!canScheduleExactAlarms) {
+        new AlertDialog.Builder(this)
+                .setTitle("Allow notifications and reminders")
+                .setMessage("Please allow notification and reminder permissions.")
+                .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM);
+                        intent.setData(Uri.parse("package:" + getPackageName()));
+                        startActivity(intent);
+                    }
+                })
+                .setNegativeButton("cancle", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                })
+                .create()
+                .show();
+        return false;
+    } else {
+        return true;
+    }
 }
 
 public boolean checkDrawOverlayPermission() {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            return true;
-        }
-        if (!Settings.canDrawOverlays(this)) {
-            new AlertDialog.Builder(this)
-                    .setTitle("Display over other apps")
-                    .setMessage("Please allow permission to Display over other apps")
-                    .setPositiveButton("ok", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            Intent intent = new Intent();
-                            intent.setAction(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
-                            Uri uri = Uri.parse("package:" + getPackageName());
-                            intent.setData(uri);
-                            startActivity(intent);
-
-                        }
-                    })
-                    .setNegativeButton("cancle", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.cancel();
-                        }
-                    })
-                    .create()
-                    .show();
-            return false;
-        } else {
-            return true;
-        }
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+        return true;
     }
+    if (!Settings.canDrawOverlays(this)) {
+        new AlertDialog.Builder(this)
+                .setTitle("Display over other apps")
+                .setMessage("Please allow permission to Display over other apps")
+                .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent();
+                        intent.setAction(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
+                        Uri uri = Uri.parse("package:" + getPackageName());
+                        intent.setData(uri);
+                        startActivity(intent);
+
+                    }
+                })
+                .setNegativeButton("cancle", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                })
+                .create()
+                .show();
+        return false;
+    } else {
+        return true;
+    }
+}
 ```
 
 - Kotlin code
 ```java
- override fun onResume() {
-        super.onResume()
-        // TODO-- huvleView apply
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            Sap_Func.setNotiBarLockScreen(this,false)
-            Sap_act_main_launcher.initsapStart(this,"bynetwork",true,true,
-                object : Sap_act_main_launcher.OnLauncher {
-                    override fun onDialogOkClicked() {
-                        checkDrawOverlayPermission()
-                    }
+override fun onCreate(savedInstanceState: Bundle?) {
 
-                    override fun onDialogCancelClicked() {
-                    }
-
-                    override fun onInitSapStartapp() {
-                    }
-
-                    override fun onUnknown() {
-                    }
-
-                })
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        if (!checkPermission()) {
+            requestSapPermissions()
         } else {
-            Sap_Func.setNotiBarLockScreen(this,false)
-            Sap_act_main_launcher.initsapStart(this,"bynetwork",true,true,
-                object : Sap_act_main_launcher.OnLauncher {
-                    override fun onDialogOkClicked() {
-                        checkDrawOverlayPermission()
-                    }
-
-                    override fun onDialogCancelClicked() {
-                    }
-
-                    override fun onInitSapStartapp() {
-                    }
-
-                    override fun onUnknown() {
-                    }
-
-                })
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+                checkExactAlarm()
+            }
         }
     }
+}
 
-    private fun checkDrawOverlayPermission(): Boolean {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            return true
+override fun onResume() {
+    super.onResume()
+    // TODO-- huvleView apply
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        if (checkPermission()) {
+            if (Build.VERSION.SDK_INT >= 34) {
+                Sap_Func.setServiceState(this,true)
+            }
+            huvleView()
         }
-        return if (!Settings.canDrawOverlays(this)) {
-            AlertDialog.Builder(this)
-                .setTitle("Display over other apps")
-                .setMessage("Please allow permission to Display over other apps.")
-                .setPositiveButton("ok") { dialog, which ->
-                    val intent = Intent()
-                    intent.action = Settings.ACTION_MANAGE_OVERLAY_PERMISSION
-                    val uri = Uri.parse("package:$packageName")
-                    intent.data = uri
-                    startActivity(intent)
-                }
-                .setNegativeButton(
-                    "cancle"
-                ) { dialog, which -> dialog.cancel() }
-                .create()
-                .show()
-            false
-        } else {
-            true
-        }
+    } else {
+        huvleView()
     }
+}
+
+private fun huvleView() {
+    Sap_Func.setNotiBarLockScreen(this,false)
+    Sap_act_main_launcher.initsapStart(this,"bynetwork",true,true,
+        object : Sap_act_main_launcher.OnLauncher {
+            override fun onDialogOkClicked() {
+                checkDrawOverlayPermission()
+            }
+
+            override fun onDialogCancelClicked() {
+            }
+
+            override fun onInitSapStartapp() {
+            }
+
+            override fun onUnknown() {
+            }
+
+        })
+}
+
+private fun checkExactAlarm(): Boolean {
+    if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.S) {
+        return true
+    }
+
+    val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+    val canScheduleExactAlarms = alarmManager.canScheduleExactAlarms()
+
+    if (!canScheduleExactAlarms) {
+        AlertDialog.Builder(this)
+            .setTitle("Allow notifications and reminders")
+            .setMessage("Please allow notification and reminder permissions.")
+            .setPositiveButton("ok") { _, _ ->
+                val intent = Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM)
+                intent.data = Uri.parse("package:$packageName")
+                startActivity(intent)
+            }
+            .setNegativeButton("cancle") { dialog, _ ->
+                dialog.cancel()
+            }
+            .create()
+            .show()
+        return false
+    } else {
+        return true
+    }
+}
+
+private fun checkDrawOverlayPermission(): Boolean {
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+        return true
+    }
+    return if (!Settings.canDrawOverlays(this)) {
+        AlertDialog.Builder(this)
+            .setTitle("Display over other apps")
+            .setMessage("Please allow permission to Display over other apps.")
+            .setPositiveButton("ok") { dialog, which ->
+                val intent = Intent()
+                intent.action = Settings.ACTION_MANAGE_OVERLAY_PERMISSION
+                val uri = Uri.parse("package:$packageName")
+                intent.data = uri
+                startActivity(intent)
+            }
+            .setNegativeButton(
+                "cancle"
+            ) { dialog, which -> dialog.cancel() }
+            .create()
+            .show()
+        false
+    } else {
+        true
+    }
+}
 ```
 
 - For the "bynetwork" value above, please go to _http://agent.huvle.com/_ to sign up with filling in the **Agent key**   
