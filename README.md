@@ -37,7 +37,7 @@ We will help you know how to affiliate with HuvleView; please visit this URL. ht
 ```
 <manifest>
 '''
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />-->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
 
     <service
