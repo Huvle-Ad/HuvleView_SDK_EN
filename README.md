@@ -62,6 +62,27 @@ We will help you know how to affiliate with HuvleView; please visit this URL. ht
 	android:clearTaskOnLaunch="true">
 ```
 
+- Recommended Network Security Settings (Prevent HTTP Access)
+```
+// Can be applied in either format 1 or 2
+1. Configure networkSecurityConfig file in res/xml and set 
+android:networkSecurityConfig="@xml/network_security_config" in AndroidManifest.xml application attributes
+
+    <?xml version="1.0" encoding="utf-8"?>
+    <network-security-config>
+        <base-config cleartextTrafficPermitted="false" />
+    </network-security-config>
+
+    <application
+        .
+        .
+        android:networkSecurityConfig="@xml/network_security_config">
+
+2. Directly set "false" in AndroidManifest.xml application attributes
+    <application android:useCleartextTraffic="false">
+
+```
+
 ### 2. Add SDK 
 Please add sub library including SDK into Gradle to use HuvleView SDK.
 - build.gradle(Project)
@@ -351,6 +372,25 @@ private fun checkDrawOverlayPermission(): Boolean {
     }
 }
 ```
+
+- Apply in-app buttons (not using notiva)
+```java
+public void huvleView() {
+    Sap_Func.setNotiBarLockScreen(this, false);
+    Sap_act_main_launcher.initsapStart(this, "bynetwork", false, true) //notibar "false" 설정
+}
+
+findViewById(R.id.test_btn).setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        String url = "https://www.huvle.com/global_set.asp";
+        Intent intent = new Intent(MainActivity.this, Sap_MainActivity.class);
+        intent.putExtra(Sap_BrowserActivity.PARAM_OPEN_URL, url);
+        startActivity(intent);
+    }
+});
+```
+
 
 - For the "bynetwork" value above, please go to _http://agent.huvle.com/_ to sign up with filling in the **Agent key**   
   the same as ID you want to register > ask for an approval of your account to huvle.  
