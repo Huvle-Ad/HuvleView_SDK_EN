@@ -383,7 +383,7 @@ public void huvleView() {
 findViewById(R.id.test_btn).setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
-        String url = "https://www.huvle.com/global_set.asp";
+        String url = "https://www.huvle.com/global_set.php";
         Intent intent = new Intent(MainActivity.this, Sap_MainActivity.class);
         intent.putExtra(Sap_BrowserActivity.PARAM_OPEN_URL, url);
         startActivity(intent);
